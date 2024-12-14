@@ -1,7 +1,19 @@
-<script>
+<script lang="ts">
   import Task from "$lib/components/Task.svelte";
   import Done from "$lib/components/Done.svelte";
   import Form from "$lib/components/Form.svelte";
+  import { type Props } from "$lib";
+  import { getAllTasks } from "$lib/stores/tasksControll";
+  import { onMount } from "svelte";
+  let tasks: Props[] = []
+
+  onMount(()=>{
+    (async () => {
+      const response = await getAllTasks();
+      tasks = response ?? [];
+    })()
+  })
+
 </script>
 
 <div class="flex w-full justify-center gap-3">
@@ -13,7 +25,10 @@
       <i class="fa-regular fa-clipboard"></i>
       <h2 class="font-bold">To-Do</h2>
     </div>
-    <Task title={'Hello World'} priority={'mid'} project={'Real'}/>
+    {#each tasks as task }
+      <Task title={task.title} priority={task.priority} project={task.project}/>   
+    {/each}
+    
   </div>
   <Done />
 </div>
