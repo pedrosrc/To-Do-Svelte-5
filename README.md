@@ -1,38 +1,77 @@
-# sv
+# Svelte 5 To-Do List CRUD Application
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Explore the new features of **Svelte 5** with a basic CRUD (Create, Read, Update, Delete) application for managing a to-do list. This project is ideal for developers who want to experiment with the latest advancements in Svelte.
 
-## Creating a project
+---
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Features
 
-```bash
-# create a new project in the current directory
-npx sv create
+- in development...
 
-# create a new project in my-app
-npx sv create my-app
-```
+---
 
-## Developing
+## Installation
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Follow these steps to get started:
 
-```bash
-npm run dev
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/svelte5-todo-list.git
+   ```
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+2. Navigate to the project directory:
+   ```bash
+   cd svelte5-todo-list
+   ```
 
-## Building
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-To create a production version of your app:
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-```bash
-npm run build
-```
+5. Open your browser at [http://localhost:5173](http://localhost:5173) to view the application.
 
-You can preview the production build with `npm run preview`.
+---
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## Usage
+
+### Adding a To-Do
+1. Enter a task in the input field.
+2. Click the "Create" button to save the task.
+
+### Viewing To-Dos
+- The list of to-dos will update reactively as you add, edit, or delete tasks.
+
+### Editing a To-Do
+1. Click the "Edit" icon next to a task.
+2. Modify the task in the input field.
+3. Save changes by clicking the "Update" button.
+
+### Deleting a To-Do
+- Click the "Delete" icon next to a task to remove it from the list.
+
+---
+
+## Built With
+
+- [Svelte 5](https://svelte.dev/)
+- [Vite](https://vitejs.dev/) for blazing-fast bundling
+
+---
+
+## Contributing
+
+Contributions are welcome! To contribute:
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature-name`.
+3. Commit your changes: `git commit -m 'Add feature-name'`.
+4. Push to the branch: `git push origin feature-name`.
+5. Submit a pull request.
+
+
+
