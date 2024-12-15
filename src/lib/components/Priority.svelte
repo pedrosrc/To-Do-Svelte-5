@@ -1,5 +1,7 @@
 <script lang="ts">
-  export let priority: string = "low";
+  import { type TaskProps } from "$lib";
+  
+  let { priority }: TaskProps = $props();
 
   const getDotClasses = (index: number) => {
     if (priority === "low" && index === 0) return "bg-neutral-blue";

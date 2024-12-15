@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { type Props } from "$lib";
+  import { type FormProps } from "$lib";
   import { createTask } from "$lib/stores/tasksControll";
 
-	let data: Props = { 
+	let data: FormProps = { 
     id: 0,
 		title: '', 
 		priority: '',

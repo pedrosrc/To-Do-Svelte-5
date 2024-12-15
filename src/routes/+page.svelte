@@ -2,17 +2,17 @@
   import Task from "$lib/components/Task.svelte";
   import Done from "$lib/components/Done.svelte";
   import Form from "$lib/components/Form.svelte";
-  import { type Props } from "$lib";
+  import { type FormProps } from "$lib";
   import { getAllTasks } from "$lib/stores/tasksControll";
-  import { onMount } from "svelte";
-  let tasks: Props[] = []
+  let tasks: FormProps[] =  $state([]);
 
-  onMount(()=>{
+	$effect(()=> {
     (async () => {
-      const response = await getAllTasks();
+      const response: FormProps[] | undefined = await getAllTasks();
       tasks = response ?? [];
     })()
-  })
+	});
+
 
 </script>
 

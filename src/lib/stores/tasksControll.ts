@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
-import { type Props } from "$lib"
+import { type FormProps } from "$lib"
 
-type TaskList = Props[];
+type TaskList = FormProps[];
 
 export const task = writable({});
 export const tasks = writable([]);
@@ -11,7 +11,7 @@ export const getAllTasks = async (): Promise<TaskList | []> => {
   return myList ? await JSON.parse(myList) : [];
 }
 
-export const createTask = async (task: Props): Promise<boolean> => {
+export const createTask = async (task: FormProps): Promise<boolean> => {
   const myList: string | null = localStorage.getItem("@to-do");
   let tasks: TaskList = JSON.parse(myList || "[]") as TaskList;
   task.id = tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1;

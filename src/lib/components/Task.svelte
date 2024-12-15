@@ -1,8 +1,8 @@
 <script lang="ts">
   import Priority from "./Priority.svelte";
-  export let title: string;
-  export let priority: string;
-  export let project: string;
+  import { type TaskProps } from "$lib";
+ 
+  let {title, priority, project}: TaskProps = $props();
 </script>
 
 <div class="flex flex-col p-2 gap-3 bg-neutral rounded-lg">
