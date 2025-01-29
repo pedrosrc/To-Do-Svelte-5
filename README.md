@@ -4,11 +4,7 @@ Explore the new features of **Svelte 5** with a basic CRUD (Create, Read, Update
 
 ---
 
-## Features
 
-- in development...
-
----
 
 ## Installation
 
