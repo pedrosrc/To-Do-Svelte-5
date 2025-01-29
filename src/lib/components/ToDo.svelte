@@ -7,6 +7,7 @@
   import { onMount } from 'svelte';
   import { tasks, getAllTasks } from "$lib/stores/tasksControll";
   import { toggleModal } from "$lib/stores/formControll";
+  import { selectedTask } from "$lib/stores/formControll";
   
   let tasksToDo: FormProps[] = $state([]);
 
@@ -19,6 +20,15 @@
       tasksToDo = value.filter(task => task.done === false);
     });
   });
+
+  function createTask() {
+    toggleModal(); 
+    resetForm();
+  }
+
+  function resetForm() {
+		selectedTask.set(null);
+  }
 </script>
 
 <div class="bg-neutral-purple rounded-lg flex flex-col justify-start gap-3 w-96 p-4 mt-12 shadow-lg">
@@ -27,7 +37,7 @@
       <div class="w-4 h-4"><FaClipboardList/></div>
       <h2 class="font-bold">To-Do</h2>
     </div>
-    <button aria-label="open modal" onclick={toggleModal} class="w-6 h-6 text-blue-600">
+    <button aria-label="open modal" onclick={createTask} class="w-6 h-6 text-blue-600">
       <FaPlusSquare/>
     </button>
   </div>
