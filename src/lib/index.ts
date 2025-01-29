@@ -4,11 +4,6 @@ export type FormProps = {
   title: string, 
   priority: string;
   project: string;
-  done: boolean;
+  done?: boolean;
 }
 
-export type TaskProps = {
-  title?: string;
-  priority?: string;
-  project?: string;
-};

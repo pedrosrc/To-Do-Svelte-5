@@ -3,19 +3,65 @@ import { type FormProps } from "$lib"
 
 type TaskList = FormProps[];
 
-export const task = writable({});
-export const tasks = writable([]);
+export const tasks = writable<TaskList>([]);
 
-export const getAllTasks = async (): Promise<TaskList | []> => {
-  const myList = localStorage.getItem("@to-do");
-  return myList ? await JSON.parse(myList) : [];
-}
+export const getAllTasks = (): void => {
+  const myList = localStorage.getItem('@to-do');
+  tasks.set(myList ? JSON.parse(myList) : []);
+};
 
-export const createTask = async (task: FormProps): Promise<boolean> => {
-  const myList: string | null = localStorage.getItem("@to-do");
-  let tasks: TaskList = JSON.parse(myList || "[]") as TaskList;
-  task.id = tasks.length > 0 ? tasks[tasks.length - 1].id + 1 : 1;
-  tasks.push(task);
-  localStorage.setItem("@to-do", JSON.stringify(tasks));
-  return true
-}
+export const createTask = async (task: FormProps): Promise<void> => {
+  try{
+    tasks.update(currentTasks => {
+      task.id = currentTasks.length > 0 ? currentTasks[currentTasks.length - 1].id + 1 : 1;
+      const updatedTasks = [...currentTasks, task];
+      localStorage.setItem("@to-do", JSON.stringify(updatedTasks));
+      return updatedTasks;
+    });
+  } catch (error){
+    console.error('Erro ao criar tarefa:', error);
+  }
+};
+
+export const updateTask = async (taskEdit: FormProps): Promise<void> => {
+  try{
+    tasks.update(currentTasks => {
+      const updatedTasks = currentTasks.map(task => {
+        if (task.id === taskEdit.id) {task = taskEdit;}
+        return task;
+      })
+      localStorage.setItem("@to-do", JSON.stringify(updatedTasks));
+      return updatedTasks;
+    });
+  } catch (error){
+    console.error('Erro ao  a tarefa:', error);
+  }
+};
+
+
+export const setDoneTask = async (taskId: number): Promise<void> => {
+  try{
+    tasks.update(currentTasks => {
+      const updatedTasks = currentTasks.map(task => {
+        if (task.id === taskId) {task.done = !task.done;}
+        return task;
+      })
+      localStorage.setItem("@to-do", JSON.stringify(updatedTasks));
+      return updatedTasks;
+    });
+  } catch (error){
+    console.error('Erro ao  a tarefa:', error);
+  }
+};
+
+export const deleteTask = async (taskId: number): Promise<void> => {
+  try{
+    tasks.update(currentTasks => {
+      const updatedTasks = currentTasks.filter(task => task.id !== taskId);
+      localStorage.setItem("@to-do", JSON.stringify(updatedTasks));
+      return updatedTasks;
+    });
+  } catch (error){
+    console.error('Erro ao remover a tarefa:', error);
+  }
+};

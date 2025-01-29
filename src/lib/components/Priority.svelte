@@ -1,7 +1,5 @@
 <script lang="ts">
-  import { type TaskProps } from "$lib";
-  
-  let { priority }: TaskProps = $props();
+  let { priority }= $props();
 
   const getDotClasses = (index: number) => {
     if (priority === "low" && index === 0) return "bg-neutral-blue";
@@ -14,7 +12,7 @@
 <div class="flex gap-2">
   {#each Array(3) as _, index}
     <div
-      class={`w-6 h-6 rounded-full ${getDotClasses(index)}`}
+      class={`w-4 h-4 rounded-full ${getDotClasses(index)}`}
     ></div>
   {/each}
 </div>
